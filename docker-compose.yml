@@ -1,0 +1,43 @@
+version: "3"
+services:
+  app:
+    ports:
+      - "80:80"
+    build: ./docker/php
+    container_name:  Laravel
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:5.7
+    platform: linux/x86_64
+    container_name: Mysql
+    env_file: ./docker/mysql/mysql.env
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql/conf:/etc/mysql/conf.d/:ro
+      - mysqldata:/var/lib/mysql
+    networks:
+      - default
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOSTS=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+    ports:
+      - 8080:80
+    restart: always
+    links:
+      - mysql:mysql
+
+      # コンテナが削除されてもデータが消えずに保持される
+volumes:
+  mysqldata:
