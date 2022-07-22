@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginFormRequest;
+
+class AuthController extends Controller
+{
+
+    /**
+     * ログイン画面の表示
+     *
+     * @return View
+     */
+    public function showLogin()
+    {
+        return view('login.login_form');
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param LoginFormRequest App\Http\Requests\LoginFormRequest
+     * @return void
+     */
+    public function Login(LoginFormRequest $request)
+    {
+        dd($request->all());
+    }
+}
