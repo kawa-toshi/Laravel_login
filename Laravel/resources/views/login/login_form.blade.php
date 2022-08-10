@@ -27,6 +27,9 @@
     </div>
     @endif
 
+
+    <x-alert type="danger" :session="session('danger')"/>
+
     <h1 class="h3 mb-3 fw-normal">ログインフォーム</h1>
 
     <div class="form-floating">
