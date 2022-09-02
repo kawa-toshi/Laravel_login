@@ -15,13 +15,16 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::group(['middleware' => ['guest']], function () {
+
     Route::controller(AuthController::class)->group(function () {
         Route::get('/', 'showLogin')->name('login.show');
         Route::post('login', 'login')->name('login');
     });
+
 });
 
 Route::group(['middleware' => ['auth']], function () {
+
     // ホーム画面へ
     Route::get('home', function () {
         return view('home');
