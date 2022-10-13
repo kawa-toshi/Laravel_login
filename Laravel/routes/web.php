@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Regist\RegistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,11 @@ Route::group(['middleware' => ['guest']], function () {
     Route::controller(AuthController::class)->group(function () {
         Route::get('/', 'showLogin')->name('login.show');
         Route::post('login', 'login')->name('login');
+    });
+
+    Route::controller(RegistController::class)->group(function () {
+        Route::get('regist', 'showRegist')->name('regist.show');
+        Route::post('regist', 'executeRegist')->name('regist.save');
     });
 
 });

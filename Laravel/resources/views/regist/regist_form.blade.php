@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ログインフォーム</title>
+    <title>新規会員登録フォーム</title>
     <!-- Bootstrap Scripts-->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Bootstrap Styles -->
@@ -14,7 +14,7 @@
 </head>
 <body>
 <main class="form-signin">
-  <form method="POST" action="{{ route('login') }}">
+  <form method="POST" action="{{ route('regist.save') }}">
     @csrf
 
     @if ($errors->any())
@@ -30,8 +30,12 @@
 
     <x-alert type="danger" :session="session('danger')"/>
 
-    <h1 class="h3 mb-3 fw-normal">ログインフォーム</h1>
+    <h1 class="h3 mb-3 fw-normal">新規会員登録フォーム</h1>
 
+    <div class="form-floating">
+      <input  class="form-control" id="floatingInput" placeholder="テスト タロウ" name="name" >
+      <label for="floatingInput">お名前</label>
+    </div>
     <div class="form-floating">
       <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" >
       <label for="floatingInput">メールアドレス</label>
@@ -41,13 +45,8 @@
       <label for="floatingPassword">パスワード</label>
     </div>
 
-    <button class="w-100 btn btn-lg btn-primary" type="submit">ログイン</button>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">新規会員登録</button>
   </form>
-
-  <div style="margin-top:10px;">
-    <a class="w-100 btn btn-lg btn-primary" href="{{ route('regist.show') }}">新規会員登録</a>
-  </div>
-
 </main>
 
 </body>
